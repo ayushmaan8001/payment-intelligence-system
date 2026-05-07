@@ -100,7 +100,7 @@ DB_NAME=payment_intelligence
 
 # ▶️ Running the Project
 
-## Step 1 — Generate Transaction Dataset
+## Step 1 - Generate Transaction Dataset
 
 ```bash
 python simulator.py
@@ -117,7 +117,7 @@ This script generates synthetic payment transaction records containing:
 
 ---
 
-## Step 2 — Load Data into MySQL
+## Step 2 - Load Data into MySQL
 
 ```bash
 python load_data.py
@@ -130,7 +130,7 @@ The script:
 
 ---
 
-## Step 3 — Run Data Analysis
+## Step 3 - Run Data Analysis
 
 ```bash
 python analysis.py
@@ -144,7 +144,7 @@ This performs:
 
 ---
 
-## Step 4 — Train Machine Learning Model
+## Step 4 - Train Machine Learning Model
 
 ```bash
 python ml_model.py
@@ -255,6 +255,6 @@ This project is created for educational and learning purposes.
 
 # 👨‍💻 Author
 
-**Ayush Singh**
+**Ayushmaan Singh**
 
 GitHub: https://github.com/ayushmaan8001
