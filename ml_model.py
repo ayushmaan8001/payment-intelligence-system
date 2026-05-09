@@ -1,4 +1,5 @@
 import os
+from dotenv import load_dotenv
 import pandas as pd
 import numpy as np
 from sqlalchemy import create_engine
@@ -9,9 +10,10 @@ from sklearn.metrics import classification_report, roc_auc_score
 from sklearn.preprocessing import LabelEncoder
 import pickle
 
-# ── Connect to DB ─────────────────────────────────────────────────────────────
+load_dotenv()
+
 db_password = os.environ.get('DB_PASSWORD')
-engine = create_engine("mysql+pymysql://root:121212@localhost/payment_intelligence")
+engine = create_engine(f"mysql+pymysql://root:{db_password}@localhost/payment_intelligence")
 
 print("Loading data...")
 df = pd.read_sql("SELECT * FROM transactions", engine)

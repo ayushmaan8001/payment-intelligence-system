@@ -1,9 +1,11 @@
 import os
+from dotenv import load_dotenv
 import pandas as pd
 from sqlalchemy import create_engine
 
-# Database connection
-db_password = "121212"
+load_dotenv()
+
+db_password = os.environ.get('DB_PASSWORD')
 engine = create_engine(f"mysql+pymysql://root:{db_password}@localhost/payment_intelligence")
 
 def run_query(query):

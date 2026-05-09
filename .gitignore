@@ -1,0 +1,6 @@
+.env
+model.pkl
+transactions.csv
+__pycache__/
+*.pyc
+*.pkl
