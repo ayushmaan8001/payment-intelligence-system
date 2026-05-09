@@ -3,7 +3,7 @@ import pandas as pd
 from sqlalchemy import create_engine
 
 # Database connection
-db_password = os.environ.get('DB_PASSWORD')
+db_password = "121212"
 engine = create_engine(f"mysql+pymysql://root:{db_password}@localhost/payment_intelligence")
 
 def run_query(query):

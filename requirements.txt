@@ -4,3 +4,8 @@ sqlalchemy
 pymysql
 scikit-learn
 numpy
+fastapi
+uvicorn
+requests
+cryptography
+python-dotenv

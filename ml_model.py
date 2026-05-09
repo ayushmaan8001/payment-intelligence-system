@@ -11,7 +11,7 @@ import pickle
 
 # ── Connect to DB ─────────────────────────────────────────────────────────────
 db_password = os.environ.get('DB_PASSWORD')
-engine = create_engine(f"mysql+pymysql://root:{db_password}@localhost/payment_intelligence")
+engine = create_engine("mysql+pymysql://root:121212@localhost/payment_intelligence")
 
 print("Loading data...")
 df = pd.read_sql("SELECT * FROM transactions", engine)
