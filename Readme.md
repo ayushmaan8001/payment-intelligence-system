@@ -1,13 +1,11 @@
 # 💳 Payment Intelligence System
-
-> An end-to-end real-time payment transaction failure monitoring and intelligence system — built with Python, FastAPI, MySQL, Scikit-learn, and Tableau.
+> An end-to-end real-time payment transaction failure monitoring and intelligence system — built with Python, FastAPI, MySQL, Scikit-learn, Tableau, and Docker.
 
 ---
 
 ## 🧠 What This Project Does
 
-Every payment app — Swiggy, PhonePe, Amazon — deals with transaction failures daily. This system:
-
+Every payment app - Swiggy, PhonePe, Amazon — deals with transaction failures daily. This system:
 - Ingests live transactions through a REST API built with FastAPI
 - Scores each transaction in real-time using a Random Forest ML model
 - Monitors failure patterns across payment methods, gateways, and time
@@ -21,7 +19,7 @@ Every payment app — Swiggy, PhonePe, Amazon — deals with transaction failure
 ```
 payment-intelligence-system/
 │
-├── app/                        # FastAPI backend (Phase 2)
+├── app/                        # FastAPI backend
 │     ├── main.py               # App entry point
 │     ├── database.py           # Database connection
 │     ├── routers/
@@ -35,6 +33,8 @@ payment-intelligence-system/
 ├── load_data.py                # MySQL data pipeline
 ├── analysis.py                 # SQL analytical queries
 ├── ml_model.py                 # Random Forest model training
+├── Dockerfile                  # FastAPI container
+├── docker-compose.yml          # FastAPI + MySQL orchestration
 ├── requirements.txt            # Python dependencies
 └── Book1.twb                   # Tableau dashboard
 ```
@@ -43,47 +43,52 @@ payment-intelligence-system/
 
 ## ⚙️ Setup Instructions
 
+### Prerequisites
+- Python 3.13
+- Docker Desktop
+- Tableau Desktop (for dashboard)
+
 ### 1. Clone the repository
 ```bash
 git clone https://github.com/ayushmaan8001/payment-intelligence-system.git
 cd payment-intelligence-system
 ```
 
-### 2. Install dependencies
-```bash
-pip install -r requirements.txt
-```
-
-### 3. Setup MySQL
-```sql
-CREATE DATABASE payment_intelligence;
-```
-
-### 4. Create .env file
+### 2. Create .env file
 ```
 DB_PASSWORD=your_mysql_password
+DB_HOST=db
 ```
 
-### 5. Run the pipeline
+### 3. Generate dataset and train ML model
 ```bash
-python simulator.py       # Generate 100k transactions
-python load_data.py       # Load into MySQL
-python analysis.py        # Run SQL analysis
-python ml_model.py        # Train ML model
+pip install -r requirements.txt
+python simulator.py
+python ml_model.py
 ```
 
-### 6. Start FastAPI backend
+### 4. Start everything with Docker
 ```bash
-uvicorn app.main:app --reload --port 8001
+docker-compose up --build
+```
+
+### 5. Load data into MySQL
+```bash
+python load_data.py
+```
+
+### 6. API is live at
+```
+http://localhost:8001/docs
 ```
 
 ### 7. Start live simulator
 ```bash
-python live_simulator.py  # Stream live transactions to API
+python live_simulator.py
 ```
 
 ### 8. Open Tableau Dashboard
-Open `Book1.twb` in Tableau Desktop and connect to MySQL when prompted.
+Open `Book1.twb` in Tableau Desktop and connect to MySQL on port 3307 when prompted.
 
 ---
 
@@ -120,6 +125,7 @@ Open `Book1.twb` in Tableau Desktop and connect to MySQL when prompted.
 - **MySQL** — Structured data storage
 - **SQLAlchemy + PyMySQL** — Database connectivity
 - **Scikit-learn** — Machine learning
+- **Docker + Docker Compose** — Containerization
 - **Tableau Desktop** — Interactive dashboard
 - **pandas / numpy** — Data processing
 
@@ -135,5 +141,4 @@ Open `Book1.twb` in Tableau Desktop and connect to MySQL when prompted.
 - [x] Real-time ML scoring
 - [x] Live transaction simulator
 - [x] Tableau dashboard
-- [ ] Docker containerization
-- [ ] Surge prediction model
+- [x] Docker containerization
