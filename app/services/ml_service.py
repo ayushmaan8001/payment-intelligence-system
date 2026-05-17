@@ -1,7 +1,8 @@
+import os
 import pickle
 import numpy as np
 
-MODEL_PATH = r"D:\projects\payment-intelligence-system\model.pkl"
+MODEL_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "model.pkl")
 
 # Load model once when service starts
 model_data = None
@@ -20,7 +21,6 @@ def predict_failure(amount, payment_method, gateway, hour):
     le_gateway = model_data['le_gateway']
     model = model_data['model']
 
-    # Encode categoricals
     try:
         method_enc = le_method.transform([payment_method])[0]
     except:
